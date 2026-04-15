@@ -174,6 +174,64 @@
       box-shadow: 0 8px 28px rgba(68, 112, 184, 0.35);
     }
 
+    /* hero button row */
+    .hero-btn-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Secondary hero button */
+    .hero-cta-secondary {
+      display: inline-block;
+      background: transparent;
+      color: rgba(214, 220, 232, 0.75);
+      font-family: var(--body);
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 18px 28px;
+      border: 1px solid rgba(214, 220, 232, 0.3);
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 4px;
+      letter-spacing: 0.01em;
+      transition: color 0.22s, border-color 0.22s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.85s;
+    }
+    .hero-cta-secondary:hover {
+      color: rgba(214, 220, 232, 0.95);
+      border-color: rgba(214, 220, 232, 0.55);
+    }
+
+    /* Location link */
+    .hero-location-link {
+      display: inline-block;
+      margin-top: 20px;
+      font-family: var(--body);
+      font-size: 0.82rem;
+      color: rgba(196, 206, 223, 0.6);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      cursor: pointer;
+      transition: color 0.2s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1s;
+    }
+    .hero-location-link:hover { color: rgba(196, 206, 223, 0.9); }
+
+    /* Location text */
+    .hero-location-text {
+      margin-top: 8px;
+      font-family: var(--body);
+      font-size: 0.75rem;
+      color: rgba(196, 206, 223, 0.35);
+      letter-spacing: 0.02em;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 1.05s;
+    }
+
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
@@ -574,6 +632,7 @@
     @media (max-width: 900px) {
       nav { padding: 20px 24px; }
       .hero-content { padding: 0 24px 80px; max-width: 100%; }
+      .hero-btn-row { flex-direction: column; align-items: flex-start; gap: 12px; }
       section { padding: 72px 24px; }
       .two-col { grid-template-columns: 1fr; gap: 48px; }
       footer { flex-direction: column; gap: 8px; padding: 20px 24px; text-align: center; }
@@ -588,7 +647,7 @@
 
   <nav>
     <span class="nav-logo">Miami Chiropractic &amp; Movement</span>
-    <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="nav-cta">Start Evaluation</a>
+    <a href="https://omniathletecenter.janeapp.com/#/staff_member/9" target="_blank" rel="noopener" class="nav-cta">Book now</a>
   </nav>
 
   <div class="hero-content">
@@ -599,6 +658,9 @@
     </h1>
     <p class="hero-sub">Most people don't need to stop moving—they need a better plan.</p>
     <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="hero-cta-primary">Start your evaluation</a>
+    <p style="margin-top:20px; font-family:'Lora',Georgia,serif; font-size:0.88rem; font-weight:500; line-height:1;">
+      <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/09" target="_blank" rel="noopener" style="color:rgba(196,206,223,0.7); text-decoration:underline; text-underline-offset:3px;">Existing patients</a><span style="color:rgba(196,206,223,0.3); margin:0 8px;">•</span><a href="https://maps.google.com/?q=8786+SW+133+St,+Miami,+FL+33176" target="_blank" rel="noopener" style="color:rgba(196,206,223,0.7); text-decoration:underline; text-underline-offset:3px;">Get directions</a>
+    </p>
   </div>
 </section>
 
