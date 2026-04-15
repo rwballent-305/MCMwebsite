@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book an Evaluation — Miami Chiropractic & Movement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2340;
+      --cream: #f0ebe3;
+      --blue-btn: #4470b8;
+      --blue-btn-hover: #5580c8;
+      --text-dark: #1e2535;
+      --text-mid: #3a3f4e;
+      --text-light: #6b7280;
+      --serif: 'Playfair Display', Georgia, serif;
+      --body: 'Lora', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--text-dark);
+      background: var(--cream);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 56px;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(26, 35, 64, 0.07);
+    }
+
+    .nav-logo {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      color: var(--text-dark);
+      letter-spacing: 0.01em;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .nav-back {
+      font-family: var(--body);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--text-dark); }
+
+    /* ── MAIN LAYOUT ── */
+    .page-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: calc(100vh - 89px);
+    }
+
+    /* ── LEFT PANEL ── */
+    .left-panel {
+      padding: 80px 64px 80px 56px;
+      border-right: 1px solid rgba(26, 35, 64, 0.08);
+    }
+
+    .page-headline {
+      font-family: var(--serif);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 400;
+      color: #0b1120;
+      line-height: 1.15;
+      margin-bottom: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s ease forwards 0.15s;
+    }
+
+    .page-sub {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    .what-includes {
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.45s;
+    }
+
+    .includes-label {
+      font-family: var(--body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 16px;
+    }
+
+    .includes-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .includes-list li {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(26, 35, 64, 0.07);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .includes-list li:first-child { border-top: 1px solid rgba(26, 35, 64, 0.07); }
+
+    .includes-list li::before {
+      content: '—';
+      color: var(--text-light);
+      opacity: 0.5;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* trust block */
+    .trust-block {
+      margin-top: 48px;
+      padding-top: 32px;
+      border-top: 1px solid rgba(26, 35, 64, 0.07);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .trust-stars {
+      font-size: 0.9rem;
+      color: #c8a84b;
+      letter-spacing: 3px;
+      margin-bottom: 6px;
+    }
+
+    .trust-text {
+      font-family: var(--body);
+      font-size: 0.82rem;
+      color: var(--text-light);
+    }
+
+    .trust-quote {
+      margin-top: 24px;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.85;
+      opacity: 0.85;
+    }
+
+    .trust-attr {
+      margin-top: 10px;
+      font-family: var(--body);
+      font-size: 0.78rem;
+      color: var(--text-light);
+    }
+
+    /* ── RIGHT PANEL ── */
+    .right-panel {
+      padding: 80px 56px 80px 64px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .scheduler-label {
+      font-family: var(--body);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.3s;
+    }
+
+    /* Scheduler placeholder */
+    .scheduler-placeholder {
+      flex: 1;
+      min-height: 480px;
+      background: rgba(26, 35, 64, 0.03);
+      border: 1.5px dashed rgba(26, 35, 64, 0.12);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.45s;
+    }
+
+    .scheduler-placeholder-icon {
+      font-size: 2rem;
+      opacity: 0.2;
+    }
+
+    .scheduler-placeholder-text {
+      font-family: var(--body);
+      font-size: 0.85rem;
+      color: var(--text-light);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .scheduler-placeholder-note {
+      font-family: var(--body);
+      font-size: 0.75rem;
+      color: var(--text-light);
+      opacity: 0.6;
+    }
+
+    /* Replace placeholder with real embed: */
+    /* .scheduler-embed { width: 100%; min-height: 480px; border: none; } */
+
+    .scheduler-caption {
+      margin-top: 16px;
+      font-family: var(--body);
+      font-size: 0.82rem;
+      color: #4a5060;
+      text-align: center;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #8898b8;
+      font-family: var(--body);
+      font-size: 0.85rem;
+      padding: 24px 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer a { color: #8898b8; text-decoration: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .page-wrap { grid-template-columns: 1fr; }
+      .left-panel { padding: 56px 24px 48px; border-right: none; border-bottom: 1px solid rgba(26,35,64,0.08); }
+      .right-panel { padding: 48px 24px 64px; }
+      footer { flex-direction: column; gap: 8px; padding: 20px 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="./index.html" class="nav-logo">Miami Chiropractic &amp; Movement</a>
+  <a href="./index.html" class="nav-back">← Back to home</a>
+</nav>
+
+<!-- ── MAIN ── -->
+<div class="page-wrap">
+
+  <!-- LEFT: info -->
+  <div class="left-panel">
+    <h1 class="page-headline">Start with a comprehensive evaluation</h1>
+    <p style="font-family:'Lora',Georgia,serif; font-size:0.95rem; font-weight:600; color:#3a3f4e; margin-bottom:16px;">Initial Evaluation — $195 (90 minutes)</p>
+    <p class="page-sub">We identify what's actually driving your symptoms and map out a clear plan forward.</p>
+    <p class="page-sub" style="margin-top:-8px;">You'll leave with a clear understanding of what's going on—and exactly what to do next.</p>
+
+    <div class="what-includes">
+      <ul class="includes-list">
+        <li>60–90 minutes of focused, one-on-one time</li>
+        <li>Hands-on assessment, movement analysis, and real-world testing</li>
+        <li>Targeted treatment based on what your body needs</li>
+        <li>A clear plan so you know exactly what to do next</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: scheduler -->
+  <div class="right-panel">
+    <div style="padding-top: 8px; display:flex; flex-direction:column; align-items:flex-start; gap: 20px;">
+      <a
+        href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30"
+        target="_blank"
+        rel="noopener"
+        style="display:inline-block; background:#4470b8; color:#fff; font-family:'Lora',Georgia,serif; font-size:1rem; font-weight:600; padding:22px 56px; border-radius:4px; text-decoration:none; transition:background 0.2s, transform 0.2s, box-shadow 0.2s;"
+        onmouseover="this.style.background='#5580c8';this.style.transform='translateY(-2px)';this.style.boxShadow='0 8px 28px rgba(68,112,184,0.35)'"
+        onmouseout="this.style.background='#4470b8';this.style.transform='translateY(0)';this.style.boxShadow='none'"
+      >Start your evaluation →</a>
+      <a
+        href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/09"
+        target="_blank"
+        rel="noopener"
+        style="font-family:'Lora',Georgia,serif; font-size:0.88rem; font-weight:600; color:#1a2340; text-decoration:underline;"
+      >Already a patient? Book here →</a>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>Miami Chiropractic &amp; Movement &nbsp;·&nbsp; Omni Athletic Performance &nbsp;·&nbsp; 8786 SW 133 St, Miami, FL 33176</span>
+  <span><a href="#">Privacy Policy</a></span>
+</footer>
+
+</body>
+</html>

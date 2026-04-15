@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Miami Chiropractic & Movement</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #1a2340;
+      --cream: #f0ebe3;
+      --blue-btn: #4470b8;
+      --blue-btn-hover: #3560a8;
+      --text-dark: #1e2535;
+      --text-mid: #3a3f4e;
+      --text-light: #6b7280;
+      --serif: 'Playfair Display', Georgia, serif;
+      --body: 'Lora', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      color: var(--text-dark);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      background: #0f1a2e;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* particle canvas */
+    #particles { position: absolute; inset: 0; z-index: 0; }
+
+    /* subtle radial glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(60,90,160,0.18) 0%, transparent 70%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* nav */
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 56px;
+    }
+
+    .nav-logo {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      color: #c4cedf;
+      letter-spacing: 0.01em;
+      font-weight: 400;
+    }
+
+    /* Nav CTA — secondary, outline, lower prominence */
+    .nav-cta {
+      font-family: var(--body);
+      font-size: 0.75rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: rgba(196, 206, 223, 0.32);
+      border: 1px solid rgba(196, 206, 223, 0.16);
+      padding: 9px 20px;
+      background: transparent;
+      cursor: pointer;
+      transition: color 0.25s, border-color 0.25s;
+      text-decoration: none;
+    }
+    .nav-cta:hover {
+      color: rgba(196, 206, 223, 0.9);
+      border-color: rgba(196, 206, 223, 0.6);
+    }
+
+    /* hero content — left-aligned vertical stack, slightly above center */
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 56px 160px;
+      padding-top: 0;
+      max-width: 780px;
+    }
+
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 6.5vw, 6.5rem);
+      font-weight: 400;
+      color: #e8ecdc;
+      line-height: 0.95;
+      letter-spacing: -0.015em;
+      margin-bottom: 22px;
+      opacity: 0;
+      transform: translateY(28px);
+      animation: fadeUp 0.9s ease forwards 0.3s;
+    }
+
+    .hero-sub {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: hsl(215, 22%, 58%);
+      max-width: 440px;
+      line-height: 1.65;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.5s;
+    }
+
+    /* Primary hero CTA — inline in content flow, left-aligned */
+    .hero-cta-primary {
+      display: inline-block;
+      background: var(--blue-btn);
+      color: #fff;
+      font-family: var(--body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 20px 56px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 4px;
+      letter-spacing: 0.01em;
+      transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+      opacity: 0;
+      animation: fadeUp 0.9s ease forwards 0.7s;
+    }
+    .hero-cta-primary:hover {
+      background: #5580c8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(68, 112, 184, 0.45);
+    }
+
+    .btn-blue {
+      display: inline-block;
+      background: var(--blue-btn);
+      color: #fff;
+      font-family: var(--body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 20px 48px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background 0.22s, transform 0.22s, box-shadow 0.22s;
+    }
+    .btn-blue:hover {
+      background: #5580c8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(68, 112, 184, 0.35);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── SHARED SECTION STYLES ── */
+    section {
+      padding: 112px 80px;
+    }
+
+    .section-heading {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      font-weight: 400;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    .section-sub {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.6;
+      max-width: 680px;
+      margin-bottom: 40px;
+    }
+
+    .body-text {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.75;
+      max-width: 580px;
+    }
+
+    /* two-col layout */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* testimonial */
+    .testimonial {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      opacity: 0.78;
+      line-height: 2.0;
+    }
+    .testimonial-attr {
+      margin-top: 12px;
+      font-family: var(--body);
+      font-style: normal;
+      font-size: 0.78rem;
+      color: var(--text-light);
+      opacity: 0.7;
+    }
+
+    /* ── SECTION 2: YOUR NEXT STEP ── */
+    #next-step {
+      background: var(--cream);
+      padding: 72px 80px 80px;
+    }
+
+    .next-step-inner {
+      max-width: 560px;
+    }
+
+    /* 1. Max headline contrast */
+    .next-step-inner .section-heading {
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      color: #0b1120;
+      margin-bottom: 12px;
+    }
+
+    .next-step-support {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .step-list { margin: 0; }
+    .step-item {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 15px;
+    }
+    .step-item:last-child { margin-bottom: 0; }
+
+    .step-label {
+      font-family: var(--body);
+      font-size: 0.75rem;
+      color: var(--text-light);
+      opacity: 0.45;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding-top: 3px;
+    }
+    /* 4. Zero gap — title + desc as single unit */
+    .step-body { display: flex; flex-direction: column; gap: 0; }
+
+    /* 2. Step titles — darker, slightly larger for presence */
+    .step-title {
+      font-family: var(--body);
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: #0f1729;
+      line-height: 1.2;
+    }
+
+    /* 3. Descriptions clearly secondary */
+    .step-desc {
+      font-family: var(--body);
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      opacity: 0.65;
+      line-height: 1.45;
+    }
+
+    /* 5. CTA — slightly more padding for presence */
+    .next-step-cta {
+      margin-top: 24px;
+    }
+    .next-step-cta .btn-blue {
+      padding: 20px 52px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* 6. Divider — nearly invisible */
+    .next-step-testimonial {
+      margin-top: 48px;
+      max-width: 500px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(26, 35, 64, 0.05);
+    }
+
+    /* ── SECTION 3: RIGHT PLACE ── */
+    #right-place { background: var(--cream); padding-top: 60px; }
+
+    .bullet-list {
+      list-style: disc;
+      padding-left: 22px;
+      margin-top: 20px;
+    }
+    .bullet-list li {
+      font-family: var(--body);
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    /* ── SECTION 4: STOP FEARING ── */
+    #stop-fearing { background: var(--cream); }
+
+    /* ── SECTION 5: COMPREHENSIVE EVAL ── */
+    #comp-eval { background: var(--cream); }
+
+    .bold-bullets { list-style: disc; padding-left: 22px; margin: 20px 0 32px; }
+    .bold-bullets li {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+
+    .caption {
+      font-family: var(--body);
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-top: 12px;
+    }
+
+    /* ── SECTION: TESTIMONIALS ── */
+    #testimonials { background: var(--cream); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 72px;
+      margin-top: 40px;
+    }
+
+    .testimonial-block {
+      padding-top: 4px;
+    }
+
+    .testimonial-quote {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 1.02rem;
+      color: var(--text-dark);
+      line-height: 1.85;
+      margin-bottom: 10px;
+    }
+
+    .testimonial-name {
+      font-family: var(--body);
+      font-size: 0.82rem;
+      color: var(--text-light);
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ── SECTION 6: WORKING WITH ME ── */
+    #working { background: var(--cream); }
+
+    .caption {
+      font-family: var(--body);
+      font-size: 0.85rem;
+      color: var(--text-light);
+      margin-top: 10px;
+    }
+
+    .process-list { margin-top: 8px; }
+    .process-item { margin-bottom: 28px; }
+    .process-num {
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .process-desc {
+      font-family: var(--body);
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ── SECTION 7: PATHS ── */
+    #paths { background: var(--cream); }
+
+    .plan-block { margin-bottom: 64px; }
+    .plan-name {
+      font-family: var(--body);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+    }
+    .plan-for {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 4px;
+    }
+    .plan-desc {
+      font-family: var(--body);
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.65;
+    }
+
+    /* ── SECTION 8: NOT FOR ── */
+    #not-for { background: var(--cream); }
+
+    .bold-para {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.65;
+      margin-bottom: 6px;
+    }
+
+    .closing-bold {
+      font-family: var(--body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.65;
+      margin-top: 32px;
+      max-width: 480px;
+    }
+
+    /* ── SECTION 9: FINAL CTA ── */
+    #final-cta { background: var(--cream); padding-bottom: 120px; }
+
+    .stars {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 24px;
+    }
+    .star-icons { color: #f5b800; font-size: 1.1rem; letter-spacing: 2px; }
+    .star-text {
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+    .reviews-link {
+      display: block;
+      font-family: var(--body);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: underline;
+      margin-top: 6px;
+      cursor: pointer;
+    }
+
+    /* ── CLOSING CTA ── */
+    #closing-cta {
+      background: var(--cream);
+      padding: 180px 80px 120px;
+      text-align: center;
+    }
+    .closing-cta-inner {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+    .closing-cta-headline {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 400;
+      color: #0b1120;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .closing-cta-sub {
+      font-family: var(--body);
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .closing-cta-caption {
+      margin-top: 12px;
+      font-family: var(--body);
+      font-size: 0.85rem;
+      color: #4a5060;
+    }
+    #closing-cta .btn-blue {
+      padding: 24px 72px;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 900px) {
+      #closing-cta { padding: 80px 24px; }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: #8898b8;
+      font-family: var(--body);
+      font-size: 0.85rem;
+      padding: 24px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    footer a { color: #8898b8; text-decoration: none; }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      width: 48px;
+      height: 2px;
+      background: var(--navy);
+      opacity: 0.18;
+      margin-bottom: 40px;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 20px 24px; }
+      .hero-content { padding: 0 24px 80px; max-width: 100%; }
+      section { padding: 72px 24px; }
+      .two-col { grid-template-columns: 1fr; gap: 48px; }
+      footer { flex-direction: column; gap: 8px; padding: 20px 24px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+<section class="hero">
+  <canvas id="particles"></canvas>
+
+  <nav>
+    <span class="nav-logo">Miami Chiropractic &amp; Movement</span>
+    <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="nav-cta">Start Evaluation</a>
+  </nav>
+
+  <div class="hero-content">
+    <h1 class="hero-headline">
+      Fix Pain.<br>
+      Build Strength.<br>
+      Stay Capable for Life.
+    </h1>
+    <p class="hero-sub">Most people don't need to stop moving—they need a better plan.</p>
+    <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="hero-cta-primary">Start your evaluation</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ YOUR NEXT STEP ═══════════════════════════════ -->
+<section id="next-step">
+  <div class="next-step-inner reveal">
+    <h2 class="section-heading">Your Next Step</h2>
+    <p class="next-step-support">We'll assess where your body is today, address anything that needs attention, and map out a clear plan—so you know exactly what to do next.</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-label">01 —</div>
+        <div class="step-body">
+          <div class="step-title">Evaluate</div>
+          <div class="step-desc">Understand what's actually driving your symptoms</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-label">02 —</div>
+        <div class="step-body">
+          <div class="step-title">Restore</div>
+          <div class="step-desc">Move better and get out of pain</div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-label">03 —</div>
+        <div class="step-body">
+          <div class="step-title">Build</div>
+          <div class="step-desc">Build strength so your body can handle more</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="next-step-testimonial">
+      <p class="testimonial">"After years of back pain and thinking I might need surgery, I'm now back in the gym after almost 8 years and feeling better every day. Dr. Ballent isn't a typical chiropractor—he takes the time to truly understand what's going on and guide you through it."</p>
+      <p class="testimonial-attr">— Stuart L.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ WORKING WITH US ═══════════════════════════════ -->
+<section id="working">
+  <div class="two-col">
+    <div class="reveal">
+      <h2 class="section-heading">What working with us looks like</h2>
+      <p class="body-text">Some issues improve quickly—but many require a more thoughtful approach to create lasting results. That's why we follow a structured process that takes you from pain and limitation to strength, confidence, and long-term resilience.</p>
+    </div>
+    <div class="reveal">
+      <div class="process-list">
+        <div class="process-item">
+          <div class="process-num">1. Evaluate</div>
+          <div class="process-desc">Understand what's actually driving your symptoms</div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">2. Restore</div>
+          <div class="process-desc">Calm things down and improve how your body moves</div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">3. Build</div>
+          <div class="process-desc">Develop strength so your body can handle more</div>
+        </div>
+        <div class="process-item">
+          <div class="process-num">4. Continue</div>
+          <div class="process-desc">Keep improving so your body stays strong and capable over time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ WHO THIS IS FOR ═══════════════════════════════ -->
+<section id="right-place">
+  <div class="reveal">
+    <div class="section-divider"></div>
+    <h2 class="section-heading">Who This Is For</h2>
+    <p class="body-text" style="margin-bottom: 20px;">This is a good fit if you want more than just temporary relief—and are ready to build something that lasts:</p>
+    <ul class="bullet-list" style="color: #4a5060; line-height: 1.6;">
+      <li>You've tried things before, but the pain keeps coming back</li>
+      <li>You want to move better, feel stronger, and stay active</li>
+      <li>You want to stay active and capable as you get older</li>
+      <li>You want a real, long-term solution</li>
+    </ul>
+    <p class="body-text" style="margin-top: 36px; font-weight: 600; color: var(--text-dark);">If you're willing to put in the work, we'll show you exactly how to move forward.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ HOW WE'RE DIFFERENT ═══════════════════════════════ -->
+<section id="stop-fearing">
+  <div class="reveal">
+    <div class="section-divider"></div>
+    <h2 class="section-heading">How We're Different</h2>
+    <p class="body-text" style="margin-top: 20px; margin-bottom: 20px; font-size: 1.18rem; font-weight: 600; color: var(--text-dark); line-height: 1.5;">Most people wait until something hurts.<br>We help you move without fear.</p>
+    <p class="body-text">We combine hands-on treatment, rehab, and strength training into one system—so you don't just feel better—you build a more resilient body and know how to keep moving, even when symptoms flare up.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ ABOUT ═══════════════════════════════ -->
+<section id="about">
+  <div class="reveal">
+    <div class="section-divider"></div>
+    <h2 class="section-heading">Who you're working with</h2>
+    <p class="body-text" style="margin-top: 20px;">I'm Dr. Ryan Ballent.</p>
+    <p class="body-text" style="margin-top: 16px;">I help people get out of pain, build strength, and stay capable as they age.</p>
+    <p class="body-text" style="margin-top: 16px;">My approach combines hands-on treatment, rehab, and strength training into one system—so you don't just feel better, you build a body that can handle more.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FINAL CTA ═══════════════════════════════ -->
+<section id="final-cta">
+  <div class="reveal">
+    <h2 class="section-heading">Start with a clear, comprehensive evaluation</h2>
+    <p class="body-text" style="margin-top: 12px; margin-bottom: 24px;">We'll identify what's driving your symptoms, work through anything that needs attention, and map out a clear plan—so you know exactly what to do next.</p>
+    <ul class="bold-bullets" style="margin-bottom: 28px;">
+      <li>60–90 minutes of focused, one-on-one time</li>
+      <li>Hands-on assessment, movement analysis, and real-world testing</li>
+      <li>Targeted work based on what your body needs</li>
+      <li>A clear, personalized plan based on your goals and lifestyle</li>
+    </ul>
+    <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="btn-blue" style="margin-top: 32px; display: inline-block;">Start your evaluation</a>
+    <p style="margin-top: 10px; font-family: 'Lora', Georgia, serif; font-size: 0.88rem; color: #4a5060;">Know exactly what to do next</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ PATHS ═══════════════════════════════ -->
+<section id="paths">
+  <div class="reveal">
+    <div class="section-divider"></div>
+    <h2 class="section-heading">After your evaluation, we guide you to the right path</h2>
+    <p class="body-text" style="margin-bottom: 48px;">Once we understand what's driving your symptoms, we'll map out the best path forward based on your goals, symptoms, and how your body responds. Most people fall into one of these paths:</p>
+
+    <div class="plan-block">
+      <div class="plan-name">Guided Recovery Plan</div>
+      <div class="plan-for">For people who want direction and can follow a plan on their own</div>
+      <div class="plan-desc">Follow a structured plan with periodic check-ins to keep you progressing.</div>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-name">Coached Progression Plan</div>
+      <div class="plan-for">For people who need hands-on guidance and structured progression</div>
+      <div class="plan-desc">We work together regularly to restore movement, build strength, and expand what your body can handle.</div>
+    </div>
+
+    <div class="plan-block">
+      <div class="plan-name">Longevity Training Program</div>
+      <div class="plan-for">For people who want to stay strong, active, and ahead of problems</div>
+      <div class="plan-desc">Ongoing training focused on strength, resilience, and long-term performance.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ TESTIMONIALS ═══════════════════════════════ -->
+<section id="testimonials">
+  <div class="reveal">
+    <h2 class="section-heading">What people are saying</h2>
+    <p class="body-text" style="margin-top: 12px; margin-bottom: 0; color: var(--text-light); font-size: 0.9rem;">80+ 5-star reviews on Google</p>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-block">
+        <p class="testimonial-quote">"My experience was great. It was a comprehensive review of my mobility to determine underlying issues—not just an adjustment and you're out the door, but a real conversation and demonstration on how to fix it."</p>
+        <p class="testimonial-name">— Kelley H.</p>
+      </div>
+
+      <div class="testimonial-block">
+        <p class="testimonial-quote">"Ryan is amazing. I had been suffering for 2 months before I went to see him, and within days I was feeling better. I will continue to see him weekly."</p>
+        <p class="testimonial-name">— Jacqueline C.</p>
+      </div>
+
+      <div class="testimonial-block">
+        <p class="testimonial-quote">"The best chiropractor I have ever been to. His attention to detail and comprehensive treatment will always bring me back."</p>
+        <p class="testimonial-name">— Neil Z.</p>
+      </div>
+
+    </div>
+    <div style="margin-top: 48px;">
+      <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="btn-blue">Start your evaluation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ NOT FOR ═══════════════════════════════ -->
+<section id="not-for">
+  <div class="reveal">
+    <div class="section-divider"></div>
+    <h2 class="section-heading">Who This Is Not For</h2>
+    <p class="bold-para">This isn't the right fit for everyone—and that's intentional.</p>
+    <p class="body-text">We take a structured approach to understanding what's driving your symptoms and building a stronger, more resilient body over time.</p>
+    <p class="body-text" style="margin-top: 16px;">Some issues improve quickly—but many require a more thoughtful approach to create lasting results.</p>
+
+    <p class="bold-para" style="margin-top: 32px;">This may not be the right fit if:</p>
+    <ul class="bullet-list">
+      <li>You're only looking for short-term relief</li>
+      <li>You prefer passive treatment</li>
+      <li>You're not interested in being part of the process</li>
+      <li>You're not interested in building something that lasts</li>
+    </ul>
+
+    <p class="closing-bold">But if you're ready for a more intentional approach, we'll guide you every step of the way—and help you build a body that can handle more.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ CLOSING CTA ═══════════════════════════════ -->
+<section id="closing-cta">
+  <div class="closing-cta-inner reveal">
+    <h2 class="closing-cta-headline">Start with a clear plan</h2>
+    <p class="closing-cta-sub">You don't need to guess what to do next. We'll assess where you are, identify what's driving the issue, and give you a clear path forward.</p>
+    <a href="https://omniathletecenter.janeapp.com/#/staff_member/9/treatment/30" target="_blank" rel="noopener" class="btn-blue">Start your evaluation</a>
+    <p class="closing-cta-caption">Know exactly what to do next</p>
+    <p class="closing-cta-caption" style="margin-top: 6px;">Choose a time that works for you.</p>
+    <p class="closing-cta-caption" style="margin-top: 14px;">Have a question? Call or text <a href="tel:3052352947" style="color: inherit; text-decoration: underline;">(305) 235-2947</a></p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ LOCATION ═══════════════════════════════ -->
+<section id="location" style="padding: 80px 80px 72px; background: var(--cream);">
+  <div class="reveal" style="max-width: 580px;">
+    <div class="section-divider"></div>
+    <h2 class="section-heading" style="font-size: clamp(1.4rem, 2.5vw, 2rem); margin-bottom: 16px;">Visit us in Miami</h2>
+    <p style="font-family: var(--body); font-size: 0.95rem; color: var(--text-mid); line-height: 1.9; margin-bottom: 24px;">
+      Located inside Omni Athletic Performance + Recovery.<br><br>
+      Miami Chiropractic &amp; Movement<br>
+      8786 SW 133 St, Miami, FL 33176
+    </p>
+    <a
+      href="https://maps.google.com/?q=8786+SW+133+St,+Miami,+FL+33176"
+      target="_blank"
+      rel="noopener"
+      style="display:inline-block; margin-top: 4px; font-family: var(--body); font-size: 0.88rem; color: var(--text-dark); text-decoration: underline;"
+    >📍 Open in Google Maps →</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+<footer>
+  <span>© 2026 Miami Chiropractic &amp; Movement · Miami, FL</span>
+  <span><a href="#">Privacy Policy</a></span>
+</footer>
+
+<!-- ═══════════════════════════════ SCRIPTS ═══════════════════════════════ -->
+<script>
+  /* ── Particle canvas ── */
+  (function() {
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+      W = canvas.width = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+
+    function Particle() {
+      this.reset();
+    }
+    Particle.prototype.reset = function() {
+      this.x = Math.random() * W;
+      this.y = Math.random() * H;
+      this.r = Math.random() * 3 + 1;
+      this.alpha = Math.random() * 0.4 + 0.05;
+      this.vx = (Math.random() - 0.5) * 0.15;
+      this.vy = (Math.random() - 0.5) * 0.15;
+    };
+    Particle.prototype.update = function() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+    };
+
+    function init() {
+      particles = [];
+      for (let i = 0; i < 120; i++) particles.push(new Particle());
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (const p of particles) {
+        p.update();
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(180,200,230,${p.alpha})`;
+        ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', () => { resize(); init(); });
+    resize(); init(); draw();
+  })();
+
+  /* ── Scroll reveal ── */
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
